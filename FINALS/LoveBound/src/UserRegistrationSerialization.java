@@ -9,12 +9,12 @@ public class UserRegistrationSerialization {
         user.username = sc.nextLine();
         System.out.println("Enter password: ");
         user.password = sc.nextLine();
+        //need ilisdan ang file directory if mag change ug pc
+        String filePath = "C:\\Users\\Bryl\\IdeaProjects\\LoveBound\\Users\\" + user.username + ".txt";
 
-        FileOutputStream fileOut = new FileOutputStream("C:\\Users\\User\\Documents\\IntelliJ Projects\\LoveBound\\Users\\" + user.username + ".txt");
-        ObjectOutputStream out = new ObjectOutputStream(fileOut);
-        out.writeObject(user);
-        out.close();
-        fileOut.close();
+        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(filePath))) {
+            out.writeObject(user);
+        }
 
         System.out.println("Success!");
     }
